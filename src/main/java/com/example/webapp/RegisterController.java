@@ -29,23 +29,23 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(Model m, @ModelAttribute User user) throws WrongPasswordException, SameUserNameException {
-        userRepository.save(user);
-      /*  for(User userName : allUsers.getAllUsers()){
-            if(username.equals(userName.getUsername())){
+    public String registerNewUser(Model m, @ModelAttribute User user, @RequestParam String password2 ) throws WrongPasswordException, SameUserNameException {
+            boolean isInDatabase = userRepository.existsUserByUsername(user.getUsername());
+
+            if(isInDatabase){
                 allUsers.addNewUser(user);
                 m.addAttribute("tempRegisterUser", user);
                 throw new SameUserNameException();
             }
-        }
-        if(!password.equals(password2)){
+
+        if(!user.getPassword().equals(password2)){
             allUsers.addNewUser(user);
             m.addAttribute("tempRegisterUser", user);
             throw new WrongPasswordException();
         }
-        allUsers.addNewUser(user);
+
+        userRepository.save(user);
         m.addAttribute("allUser", allUsers.getAllUsers());
-*/
         return "login2";
     }
     @ExceptionHandler(WrongPasswordException.class)

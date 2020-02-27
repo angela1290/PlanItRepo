@@ -21,7 +21,7 @@ class WebappApplicationTests {
         Assertions.assertEquals(4,userRepository.count());
     }
 
-
+    @Test
     public void shouldFindUsernameAndPasswordByID() {
         User user = userRepository.findById(2L).get();
 
@@ -36,6 +36,8 @@ class WebappApplicationTests {
         Assertions.assertEquals("Thal", user2.getUsername());
         Assertions.assertEquals("thal123", user2.getPassword());
     }
+
+    ///public void s
 
 
 
