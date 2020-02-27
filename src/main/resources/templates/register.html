@@ -14,7 +14,7 @@
     <h1>Plan It | Sign up </h1>
 </header>
 <div class="container">
-    <form id="my-form"  method="POST" action="/register" th:object="${tempRegisterUser}" >
+    <form id="my-form"  method="POST" action="/register" th:object="${user}" >
         <h2>Register</h2>
         <div id="name_input">
 
@@ -29,13 +29,20 @@
             <label>Enter password: </label><br>
             <input type="password" name="password" placeholder="Password.." th:field="*{password}" autofocus required>
             <br><br>
-            <label>Re-enter password: </label><br>
+           <!-- <label>Re-enter password: </label><br>
             <input type="password" name="password2" placeholder="Password.." autofocus required>
-            <h6 th:text="${invalidPassword}"></h6>
+            <h6 th:text="${invalidPassword}"></h6>-->
             <br><br>
             <label for="email">Email Address: </label><br>
             <input id="email" type="email" placeholder="Enter email.." th:field="*{email}" name="email" autofocus>
             <br><br>
+            <!---<label for="Interest">Choose a interest:</label>
+            <select id="Interest" th:field="*{fashion}">
+                <option value="fashion" name="fashion">Fashion</option>
+                <option value="horror" name="horror">Horror</option>
+                <option value="technology" name="technology">Technology</option>
+                <option value="sports" name="sports">Sports</option>
+            </select>-->
             <button class="btn" id="form_button">Submit</button>
             <br>
 
