@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewh2ort" content="width=device-width, initial-scale=1">
+    <meta name="descrih2tion" content="planIt home page">
+    <meta name="keywords" content="home planner, plan, calendar">
+    <title>PlanIt | Budget</title>
+    <link rel="stylesheet" type="text/css" href="dashStyleSheet.css">
+</head>
+<!----- HEADER -------->
+
+<body>
+<div class="header">
+    <a href="/dash" class="logo"><img src="logony.png" alt="plan it logo"></a>
+    <div class="signout">
+        <a href="/">Sign out</a>
+    </div>
+    <div class="hero-text">
+        <h2 th:text="Hello + ' ' + ${session.logger}"></h2>
+        <h1>GET YOUR LIFE TOGETHER</h1>
+    </div>
+</div>
+<!----- MAIN ---->
+<main class="container-budget">
+    <div class="sidenav">
+        <a class="link1" href="#">
+            <section class="first">
+                <img class="image" src="calendar2.png">
+                <h3>MY CALENDAR</h3>
+        </a>
+        </section>
+        <a class="link2" href="/budget">
+            <section class="second">
+                <img class="image" src="budget.png">
+                <h3>MY BUDGET</h3>
+            </section>
+        </a>
+        <a class="link3" href="/list">
+            <section class="third">
+                <img class="image" src="list.png">
+                <h3>MY LISTS</h3>
+            </section>
+        </a>
+    </div>
+    <section class="budget">
+        <h1 class="budget-text"><img src="/BudgetLogo.png" alt=""></h1>
+        <form action="/budget" method="POST" th:object="${budget}">
+            <!----------Enter income---------->
+            <div class="inputBoxes">
+                <label>
+                    <br>
+                    <progress id="total" th:value="*{income-food-rent-savings}" th:max="*{income} "></progress>
+                    <div th:text="'Balance: ' + *{income-food-rent-savings} + ' kr'"></div>
+                </label>
+            </div>
+            <!----------Enter income budget---------->
+            <div class="inputBoxes">
+                <label> Enter monthly income:
+                    <br>
+                    <input type="text" th:field="*{income}">
+                    <input type="submit" value="Set">
+                    <progress id="income" th:text="${income}" th:value="*{income}" th:max="*{income}"></progress>
+                </label>
+            </div>
+            <!----------Enter grocery budget---------->
+            <div class="inputBoxes">
+                <label> Enter grocery budget:
+                    <br>
+                    <input type="text" th:field="*{food}">
+                    <input type="submit" value="Set">
+                    <progress id="food" th:text="${food}" th:value="*{food}" th:max="*{income}"></progress>
+                </label>
+            </div>
+            <!----------Enter Rent expenses---------->
+            <div class="inputBoxes">
+                <label> Enter rent expenses:
+                    <br>
+                    <input type="text" th:field="*{rent}">
+                    <input type="submit" value="Set">
+                    <progress id="rent" th:value="*{rent}" th:max="*{income}"></progress>
+                </label>
+            </div>
+            <!----------Enter savings---------->
+            <div class="inputBoxes">
+                <label> Enter savings:
+                    <br>
+                    <input type="text" th:field="*{savings}">
+                    <input type="submit" value="Set">
+                    <progress id="savings" th:value="*{savings}" th:max="*{income}"></progress>
+                </label>
+            </div>
+        </form>
+    </section>
+
+</main>
+<!----- ------>
+
+<!---- <script src="https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/ekstern_boks_liten.js"></script><noscript><a href="https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/">yr.no: Værvarsel for Oslo</a></noscript>-->
+
+<!-- Footer -->
+<footer class="footer2">
+    <div class="footer2">
+        <h3>Plan It 2020. All rights reserved.</h3>
+    </div>
+</footer>
+</body>
+</html>

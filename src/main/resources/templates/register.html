@@ -1,0 +1,49 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" />
+    <title>Plan It</title>
+</head>
+
+<body>
+
+<header>
+    <h1>Plan It | Sign up </h1>
+</header>
+<div class="container">
+    <form id="my-form"  method="POST" action="/register" th:object="${tempRegisterUser}" >
+        <h2>Register</h2>
+        <div id="name_input">
+
+            <label for="first">Your Name: </label><br>
+            <input id="first" type="text" name="firstname" placeholder="First Name" th:field="*{firstname}" autofocus>
+            <input id="last" type="text" name="lastname" placeholder="Last Name" th:field="*{lastname}"autofocus>
+            <br><br>
+            <label>Enter username: </label><br>
+            <input type="text" name="username" placeholder="Username.." th:field="*{username}" autofocus required><br><br>
+            <h6 th:text = "${invalidUserName}"></h6>
+
+            <label>Enter password: </label><br>
+            <input type="password" name="password" placeholder="Password.." th:field="*{password}" autofocus required>
+            <br><br>
+            <label>Re-enter password: </label><br>
+            <input type="password" name="password2" placeholder="Password.." autofocus required>
+            <h6 th:text="${invalidPassword}"></h6>
+            <br><br>
+            <label for="email">Email Address: </label><br>
+            <input id="email" type="email" placeholder="Enter email.." th:field="*{email}" name="email" autofocus>
+            <br><br>
+            <button class="btn" id="form_button">Submit</button>
+            <br>
+
+        </div>
+        <br><br>
+    </form>
+
+</div>
+</body>
+
+</html>

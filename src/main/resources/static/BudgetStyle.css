@@ -1,0 +1,122 @@
+body {
+    font-family: Raleway, sans-serif;
+    width: 80%;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+}
+
+progress {
+    width: 250px;
+    height: 25px;
+    border-radius: 10px;
+
+}
+progress::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+#total::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, #2F762E, #8EE65D);
+
+    border-radius: 10px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+}
+
+ #income::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, #FFBF00, #FFCF40);
+
+    border-radius: 10px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+}
+
+#food::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, #731D1D, #BF304A);
+
+    border-radius: 10px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+}
+#rent::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, #1F1A4B, #3164A0);
+
+    border-radius: 10px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+}
+#savings::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, #D9B166, #BF9969);
+
+    border-radius: 10px;
+    background-size: 35px 25px, 100% 100%, 100% 100%;
+}
+
+label {
+    text-align: center;
+    display:block;
+    font-weight:bold;
+    margin:5px 0;
+}
+
+
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    margin: auto;
+    border: lightgrey solid 1px;
+}
+
+.inputBoxes {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 50px;
+}
+
+input[type=submit] {
+    background-color: #49868C;
+    color: white;
+    border: #49868C 1px solid;
+}
+input[type=submit]:hover {
+    background-color: #A0D9D9;
+    color: white;
+    border: #A0D9D9 1px solid;
+}

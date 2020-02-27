@@ -1,0 +1,27 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="form">
+        <form action="/login" id="login_form" method="POST" >
+            <h2>Login </h2>
+            <div id="name_input">
+             <label>Login Name: </label><br><br>
+               <input type="text" name="username" placeholder="Login Name" autofocus><br>
+             <label>Password: </label><br>
+               <input type="password" name="password" placeholder="Password"><br>
+              <h6 th:text="${invalidUser}"></h6>
+                <input type="submit" th:text="submit" th:href="dash"><br>
+                <p ><a href="/register">Sign up! </a></p>
+            </div><br><br>
+        </form>
+    </div>
+</body>
+
+</html>
