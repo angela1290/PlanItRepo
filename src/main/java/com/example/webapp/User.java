@@ -16,8 +16,8 @@ public class User {
     private String firstname;
     @Column(name = "last_name")
     private String lastname;
-    private String interest;
-    private int budget_ID;
+    //private String interest;
+    //private int budget_ID;
 
     public User() {
     }
@@ -64,11 +64,11 @@ public class User {
         return lastname;
     }
 
-    public String getInterest() {
+    /*public String getInterest() {
         return interest;
     }
 
-    public int getBudget_ID() {
+    /*public int getBudget_ID() {
         return budget_ID;
-    }
+    }*/
 }

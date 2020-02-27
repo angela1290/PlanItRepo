@@ -1,5 +1,6 @@
 package com.example.webapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class RegisterController {
+
+    @Autowired
+    UserRepository userRepository;
+
     AllUsers allUsers;
 
     public RegisterController(AllUsers allUsers) {
@@ -24,8 +29,9 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(Model m, @ModelAttribute User user,@RequestParam String username, @RequestParam String password, @RequestParam String password2) throws WrongPasswordException, SameUserNameException {
-        for(User userName : allUsers.getAllUsers()){
+    public String registerNewUser(Model m, @ModelAttribute User user) throws WrongPasswordException, SameUserNameException {
+        userRepository.save(user);
+      /*  for(User userName : allUsers.getAllUsers()){
             if(username.equals(userName.getUsername())){
                 allUsers.addNewUser(user);
                 m.addAttribute("tempRegisterUser", user);
@@ -39,7 +45,7 @@ public class RegisterController {
         }
         allUsers.addNewUser(user);
         m.addAttribute("allUser", allUsers.getAllUsers());
-
+*/
         return "login2";
     }
     @ExceptionHandler(WrongPasswordException.class)
