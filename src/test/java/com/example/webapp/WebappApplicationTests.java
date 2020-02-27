@@ -21,6 +21,4 @@ class WebappApplicationTests {
         Assertions.assertEquals(4,userRepository.count());
     }
 
-    
-
 }
