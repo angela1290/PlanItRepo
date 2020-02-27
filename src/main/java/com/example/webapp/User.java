@@ -16,8 +16,8 @@ public class User {
     private String firstname;
     @Column(name = "last_name")
     private String lastname;
-    private String interest;
-    private int budget_ID;
+    //private String interest;
+    //private int budget_ID;
 
     public User() {
     }
@@ -64,11 +64,35 @@ public class User {
         return lastname;
     }
 
-    public String getInterest() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    /*public String getInterest() {
         return interest;
     }
 
-    public int getBudget_ID() {
+    /*public int getBudget_ID() {
         return budget_ID;
-    }
+    }*/
 }
