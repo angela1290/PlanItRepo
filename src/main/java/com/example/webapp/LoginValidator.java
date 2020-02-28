@@ -28,7 +28,7 @@ public class LoginValidator implements Validator {
         }
 
       if(!userRepository.existsUserByUsername(user.getUsername())) {
-          e.rejectValue("username2", "wrong username");
+          e.rejectValue("username", "wrong username");
 
       }
 
