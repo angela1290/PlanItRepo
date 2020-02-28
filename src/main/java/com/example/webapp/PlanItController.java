@@ -25,29 +25,28 @@ public class PlanItController {
     }
 
     @GetMapping("/login")
-    public String showLoginSite(Model model){
-        model.addAttribute("user", new User());
+    public String showLoginSite(Model model, @ModelAttribute User user){
+        model.addAttribute("user", user);
         return "login2";
     }
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpSession session, @RequestParam String username , @RequestParam String password, BindingResult result, Model model) throws WrongUserNameAndPasswordException {
-       if(loginValidator.supports(user.getClass())){
-           loginValidator.validate(user,result);
-       }
-       if(result.hasErrors()){
-           model.addAttribute("errorMes", "Failed!");
-           return "login2";
-
-       }
-
-         user = userRepository.findUserByUsername(username);
-       if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-           session.setAttribute("logger", username);
-           return "dash";
-       }
-        throw new WrongUserNameAndPasswordException();
+        if (loginValidator.supports(user.getClass())) {
+            loginValidator.validate(user, result);
         }
+        if (result.hasErrors()) {
+            model.addAttribute("errorMes", "Failed!");
+            return "login2";
+        }
+        User userQuery = userRepository.findUserByUsername(username);
+        if (userQuery.getUsername().equals(username) && userQuery.getPassword().equals(password)) {
+            session.setAttribute("logger", username);
+            return "dash";
+        } else {
+            throw new WrongUserNameAndPasswordException();
+        }
+    }
 
 
     @GetMapping("/dash")
@@ -74,6 +73,7 @@ public class PlanItController {
 
     @ExceptionHandler(WrongUserNameAndPasswordException.class)
     String inValidNumber(Model model){
+        model.addAttribute("user", new User());
         model.addAttribute("invalidUser", "Invalid Username or password");
         return"login2";
     }

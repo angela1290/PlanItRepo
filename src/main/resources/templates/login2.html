@@ -20,13 +20,13 @@
 				<div class="msg"></div>
 				<div>
 					<label for="username">Login Name:</label>
-					<input type="text" id="username" th:field="*{username}" />
+					<input type="text" id="username" th:field="*{username}" name="username"/>
 					<h6 th:if="${#fields.hasErrors('username')}">Incorrect username</h6>
 					<h6 th:if="${#fields.hasErrors('username')}">Please sign up!</h6>
 				</div>
 				<div>
 					<label for="password">Password:</label>
-					<input type="password" id="password" th:field="*{password}" />
+					<input type="password" id="password" th:field="*{password}" name="password" />
 					<h6 th:if="${#fields.hasErrors('password')}">Incorrect password</h6>
 					<h6 th:text="${invalidUser}"></h6>
 
