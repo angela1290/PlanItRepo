@@ -1,0 +1,28 @@
+<%@ include file="/header.jspf"%>
+<%@ include file="/navigation.jspf"%>
+<div class="container" xmlns:form="http://www.w3.org/1999/xhtml">
+    <div class="row">
+        <div class="col">
+            <div>
+                Add TODO
+            </div>
+            <div>
+                <form:form method="post" modelAttribute="todo">
+                    <form:hidden path="id"/>
+                    <fieldset class="form-group">
+                        <form:label path="description">Description</form:label>
+                        <form:input path="description" type="text" required="required" />
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <form:label path="targetDate">Target Date</form:label>
+                        <form:input path="targetDate" type="text" required="required" />
+                    </fieldset>
+                    <button type="submit" class="btn">Save</button>
+
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+<%@ include file="/footer.html"%>
