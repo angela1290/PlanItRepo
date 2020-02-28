@@ -17,15 +17,23 @@ public class BudgetController {
     @Autowired
     BudgetRepository budgetRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     @GetMapping("/budget")
     public String showBudget(@ModelAttribute Budget budget, HttpSession s, Model m) {
+
+
         String username = (String) s.getAttribute("logger");
-        if(username != null){
-                if (s.getAttribute("budget") != null) {
-                 m.addAttribute("budget", s.getAttribute("budget"));
-                    return "budget";
-                }
+        if (username != null) {
+
+            User u = userRepository.findUserByUsername(username);
+
+            m.addAttribute("userId", u.getId());
+
+            m.addAttribute("budget", u.getBudget());
+
             return "budget";
         }
 
@@ -34,10 +42,13 @@ public class BudgetController {
 
 
     @PostMapping("/budget")
-    public String setValues(@ModelAttribute Budget budget, @ModelAttribute User user, Model m) {
+    public String setValues(@ModelAttribute Budget budget, Model m, @RequestParam long userId) {
 
+        User user = userRepository.findById(userId).get();
         budgetRepository.save(budget);
         user.setBudget(budget);
+
+        userRepository.save(user);
 
         m.addAttribute("budget", user.getBudget());
 
