@@ -17,7 +17,9 @@ public class User {
     @Column(name = "last_name")
     private String lastname;
     //private String interest;
-    //private int budget_ID;
+
+    @ManyToOne
+    private Budget budget;
 
     public User() {
     }
@@ -86,6 +88,14 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     /*public String getInterest() {
