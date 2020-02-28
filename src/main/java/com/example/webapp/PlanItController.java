@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+
 
 @Controller
 public class PlanItController {
@@ -52,10 +52,6 @@ public class PlanItController {
         }
     }
 
-/*    @GetMapping("/list")
-    public String showList(){
-        return "list";
-    }*/
 
     @GetMapping("/")
     String logOutDashboard(HttpSession session){
