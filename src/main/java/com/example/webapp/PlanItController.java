@@ -3,10 +3,11 @@ package com.example.webapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+
 
 @Controller
 public class PlanItController {
@@ -21,15 +22,24 @@ public class PlanItController {
     }
 
     @GetMapping("/login")
-    public String showLoginSite(){
-        //System.out.println(allUsers.getAllUsers().size());
-        //System.out.println(allUsers.getAllUsers());
+    public String showLoginSite(Model model){
+        model.addAttribute("user", new User());
         return "login2";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute Budget budget, HttpSession session,@RequestParam String username , @RequestParam String password) throws WrongUserNameAndPasswordException {
-       User user = userRepository.findUserByUsername(username);
+    public String login(@ModelAttribute User user, HttpSession session, @RequestParam String username , @RequestParam String password, BindingResult result, Model model) throws WrongUserNameAndPasswordException {
+       LoginValidator loginValidator = new LoginValidator();
+       if(loginValidator.supports(user.getClass())){
+           loginValidator.validate(user,result);
+       }
+       if(result.hasErrors()){
+           model.addAttribute("errorMes", "Failed!");
+           return "login2";
+
+       }
+
+         user = userRepository.findUserByUsername(username);
        if(user.getUsername().equals(username) && user.getPassword().equals(password)){
            session.setAttribute("logger", username);
            return "dash";
@@ -52,10 +62,6 @@ public class PlanItController {
         }
     }
 
-/*    @GetMapping("/list")
-    public String showList(){
-        return "list";
-    }*/
 
     @GetMapping("/")
     String logOutDashboard(HttpSession session){
