@@ -39,9 +39,6 @@ class WebappApplicationTests {
         Assertions.assertEquals("thal123", user2.getPassword());
     }
 
-        Assertions.assertEquals(5, lastUser.getId());
-    }
-
     @Test
     public void shouldConnectBudgetToUser() {
         User user = new User();
