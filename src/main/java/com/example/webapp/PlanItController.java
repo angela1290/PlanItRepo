@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
 public class PlanItController {
 
     @Autowired
+    LoginValidator loginValidator;
+
+    @Autowired
     UserRepository userRepository;
 
     AllUsers allUsers;
@@ -29,7 +32,6 @@ public class PlanItController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpSession session, @RequestParam String username , @RequestParam String password, BindingResult result, Model model) throws WrongUserNameAndPasswordException {
-       LoginValidator loginValidator = new LoginValidator();
        if(loginValidator.supports(user.getClass())){
            loginValidator.validate(user,result);
        }

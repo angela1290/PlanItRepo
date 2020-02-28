@@ -39,23 +39,23 @@ class WebappApplicationTests {
         Assertions.assertEquals("thal123", user2.getPassword());
     }
 
-        Assertions.assertEquals(5, lastUser.getId());
-    }
-
     @Test
     public void shouldConnectBudgetToUser() {
         User user = new User();
-
         Budget budget = new Budget();
         budgetRepository.save(budget);
-
         user.setPassword("123");
         user.setUsername("anna12");
         user.setBudget(budget);
-
         userRepository.save(user);
-
         Assertions.assertEquals(6, userRepository.findUserByUsername("anna12").getBudget().getId());
+    }
+    @Test
+    public void isUserNameInTheDatabase(){
+        Assertions.assertTrue(userRepository.existsUserByUsername("Krister"));
+        Assertions.assertFalse(userRepository.existsUserByUsername("hej"));
+    }
+
 
     }
-}
+

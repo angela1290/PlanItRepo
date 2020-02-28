@@ -22,10 +22,12 @@
 					<label for="username">Login Name:</label>
 					<input type="text" id="username" th:field="*{username}" />
 					<h6 th:if="${#fields.hasErrors('username')}">Incorrect username</h6>
+					<h6 th:if="${#fields.hasErrors('username')}">Please sign up!</h6>
 				</div>
 				<div>
 					<label for="password">Password:</label>
-					<input type="password" id="password" name="password" />
+					<input type="password" id="password" th:field="*{password}" />
+					<h6 th:if="${#fields.hasErrors('password')}">Incorrect password</h6>
 					<h6 th:text="${invalidUser}"></h6>
 
 				</div>
