@@ -1,0 +1,35 @@
+<%@ include file="common/header.jspf"%>
+<%@ include file="common/navigation.jspf"%>
+
+<div xmlns:fmt="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:c="">
+ <div class="container">
+  <div>
+    <a type="button" href="/add-todo">Add Todo</a>
+  </div>
+</div>
+<br>
+<div>
+    <h3>List of TODO's</h3>
+</div>
+    <table>
+        <thead>
+             <tr>
+                <th>Description</th>
+                <th>Target Date</th>
+                <th></th>
+             </tr>
+       </thead>
+       <tbody>
+       <c:forEach items="${todos}" var="todo">
+        <tr>
+            <td>${todo.description}</td>
+            <td fmt:formatDate value="${todo.targetDate}" pattern="dd/MM/yyyy"></td>
+            <td ><a type="button" href="/update-todo?id=${todo.id}">Update</a>
+            <a type="button" class="btn" href="/delete-todo?id=${todo.id}">Delete</a>
+            </td>
+        </tr>
+       </c:forEach>
+        </tbody>
+    </table>
+</div>
+<%@ include file="common/footer.jspf">
