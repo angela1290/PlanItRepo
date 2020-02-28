@@ -65,7 +65,8 @@ public class PlanItController {
 
 
     @GetMapping("/")
-    String logOutDashboard(HttpSession session){
+    String logOutDashboard(HttpSession session, Model model){
+        model.addAttribute("user", new User());
         session.removeAttribute("logger");
         session.invalidate();
         return "login2";
