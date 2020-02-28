@@ -1,5 +1,6 @@
 package com.example.webapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 
 @Controller
 public class PlanItController {
+
+    @Autowired
+    UserRepository userRepository;
 
     AllUsers allUsers;
 
@@ -25,16 +29,14 @@ public class PlanItController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute Budget budget, HttpSession session,@RequestParam String username , @RequestParam String password) throws WrongUserNameAndPasswordException {
-
-        for (User user : allUsers.getAllUsers()) {
-            System.out.println(user.getUsername());
-            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                session.setAttribute("logger", username);
-                return "dash";
-            }
-        }
+       User user = userRepository.findUserByUsername(username);
+       if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+           session.setAttribute("logger", username);
+           return "dash";
+       }
         throw new WrongUserNameAndPasswordException();
-    }
+        }
+
 
     @GetMapping("/dash")
     public String showDash(HttpSession session, @ModelAttribute Budget budget, Model model){
