@@ -38,9 +38,12 @@ class WebappApplicationTests {
     }
 
 
+    @Test
+    public void isUserNameInTheDatabase(){
 
 
-
-    
+        Assertions.assertTrue(userRepository.existsUserByUsername("Krister"));
+        Assertions.assertFalse(userRepository.existsUserByUsername("hej"));
+    }
 
 }
