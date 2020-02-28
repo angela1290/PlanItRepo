@@ -203,7 +203,7 @@ footer {
     background-color: rgb(233, 233, 233);
     bottom: 0;
     font-size: 16px;
-    padding: 10px;
+    padding-top: 10px;
     font-style: italic;
     text-align: center;
 }

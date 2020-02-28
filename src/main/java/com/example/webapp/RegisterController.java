@@ -21,24 +21,24 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String showRegister(Model m, @ModelAttribute User user){
+    public String showRegister(Model m, @ModelAttribute User user) {
         m.addAttribute("allUser", allUsers.getAllUsers());
-            m.addAttribute("tempRegisterUser", user);
+        m.addAttribute("tempRegisterUser", user);
 
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerNewUser(Model m, @ModelAttribute User user, @RequestParam String password2 ) throws WrongPasswordException, SameUserNameException {
-            boolean isInDatabase = userRepository.existsUserByUsername(user.getUsername());
+    public String registerNewUser(Model m, @ModelAttribute User user, @RequestParam String password2) throws WrongPasswordException, SameUserNameException {
+        boolean isInDatabase = userRepository.existsUserByUsername(user.getUsername());
 
-            if(isInDatabase){
-                allUsers.addNewUser(user);
-                m.addAttribute("tempRegisterUser", user);
-                throw new SameUserNameException();
-            }
+        if (isInDatabase) {
+            allUsers.addNewUser(user);
+            m.addAttribute("tempRegisterUser", user);
+            throw new SameUserNameException();
+        }
 
-        if(!user.getPassword().equals(password2)){
+        if (!user.getPassword().equals(password2)) {
             allUsers.addNewUser(user);
             m.addAttribute("tempRegisterUser", user);
             throw new WrongPasswordException();
@@ -48,15 +48,17 @@ public class RegisterController {
         m.addAttribute("allUser", allUsers.getAllUsers());
         return "login2";
     }
+
     @ExceptionHandler(WrongPasswordException.class)
-    String inValidNumber(Model model){
+    String inValidNumber(Model model) {
         model.addAttribute("tempRegisterUser", allUsers.getTempararyUser());
         model.addAttribute("invalidPassword", "Password doesn't match");
         allUsers.removeTempararyUser();
-        return"register";
+        return "register";
     }
+
     @ExceptionHandler(SameUserNameException.class)
-    String invalidUsername(Model model){
+    String invalidUsername(Model model) {
         model.addAttribute("tempRegisterUser", allUsers.getTempararyUser());
         model.addAttribute("invalidUserName", String.format("User %s already exists", allUsers.getTempararyUser().getUsername()));
         allUsers.removeTempararyUser();
