@@ -1,5 +1,6 @@
 package com.example.webapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class BudgetController {
+
+    @Autowired
+    BudgetRepository budgetRepository;
 
 
     @GetMapping("/budget")
@@ -30,9 +34,12 @@ public class BudgetController {
 
 
     @PostMapping("/budget")
-    public String setValues(@ModelAttribute Budget budget, HttpSession s) {
-        s.setAttribute("budget", budget);
+    public String setValues(@ModelAttribute Budget budget, @ModelAttribute User user, Model m) {
 
+        budgetRepository.save(budget);
+        user.setBudget(budget);
+
+        m.addAttribute("budget", user.getBudget());
 
         return "budget";
     }

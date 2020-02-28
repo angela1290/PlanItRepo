@@ -13,6 +13,8 @@ class WebappApplicationTests {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private  BudgetRepository budgetRepository;
 
     @Test
     void contextLoads() {
@@ -44,7 +46,23 @@ class WebappApplicationTests {
         List<User> allUser = (List<User>) userRepository.findAll();
         User lastUser = allUser.get((int) (total - 1));
 
+        Assertions.assertEquals(5, lastUser.getId());
+    }
 
-        Assertions.assertEquals("5", lastUser.getId());
+    @Test
+    public void shouldConnectBudgetToUser() {
+        User user = new User();
+
+        Budget budget = new Budget();
+        budgetRepository.save(budget);
+
+        user.setPassword("123");
+        user.setUsername("anna12");
+        user.setBudget(budget);
+
+        userRepository.save(user);
+
+        Assertions.assertEquals(6, userRepository.findUserByUsername("anna12").getBudget().getId());
+
     }
 }
