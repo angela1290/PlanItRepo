@@ -46,6 +46,11 @@
     <section class="budget">
         <h1 class="budget-text"><img src="/BudgetLogo.png" alt=""></h1>
         <form action="/budget" method="POST" th:object="${budget}">
+
+            <input type="hidden" name="userId" th:value="${userId}">
+            <input type="hidden" name="id" th:value="*{id}">
+
+
             <!----------Enter income---------->
             <div class="inputBoxes">
                 <label>
