@@ -1,24 +1,32 @@
 package com.example.webapp;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Entity
 public class Budget {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private int income;
+    @Column (name="food_expenses")
     private int food;
+    @Column (name="rent_expenses")
     private int rent;
     private int savings;
-    private List<Integer> savedBudget;
+//    private List<Integer> savedBudget;
 
     public Budget() {
-        this.savedBudget = new ArrayList<>();
+
     }
 
-    public void addIncome(int income){
-        savedBudget.add(income);
-    }
+//    public void addIncome(int income){
+//        this.income ;
+//    }
+
     public void setIncome(int income) {
         this.income = income;
     }
@@ -51,4 +59,11 @@ public class Budget {
         return savings;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

@@ -14,6 +14,9 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    BudgetRepository budgetRepository;
+
     AllUsers allUsers;
 
     public RegisterController(AllUsers allUsers) {
@@ -44,7 +47,12 @@ public class RegisterController {
             throw new WrongPasswordException();
         }
 
-        userRepository.save(user);
+            Budget budget = new Budget();
+            budgetRepository.save(budget);
+            user.setBudget(budget);
+            userRepository.save(user);
+
+
         m.addAttribute("allUser", allUsers.getAllUsers());
         return "login2";
     }
