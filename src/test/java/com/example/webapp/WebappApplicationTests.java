@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 @SpringBootTest
 class WebappApplicationTests {
 
@@ -19,8 +17,8 @@ class WebappApplicationTests {
     }
 
     @Test
-    public void shouldFindCorrectNumberOfUsers() {
-        Assertions.assertEquals(4, userRepository.count());
+    public void shouldFindCorrectNumberOfUsers(){
+        Assertions.assertEquals(4,userRepository.count());
     }
 
     @Test
@@ -38,13 +36,11 @@ class WebappApplicationTests {
         Assertions.assertEquals("Thal", user2.getUsername());
         Assertions.assertEquals("thal123", user2.getPassword());
     }
-    @Test
-    public void shouldFindTheLastNewUser() {
-        long total = userRepository.count();
-        List<User> allUser = (List<User>) userRepository.findAll();
-        User lastUser = allUser.get((int) (total - 1));
 
 
-        Assertions.assertEquals("5", lastUser.getId());
-    }
+
+
+
+    
+
 }

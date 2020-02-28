@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,12 +13,15 @@
 		</header>
 
 		<section class="container">
-			<form id="my-form" action="/login" method="POST">
+
+
+			<form id="my-form" action="/login" method="POST" th:object="${user}">
 				<h2>Login</h2>
 				<div class="msg"></div>
 				<div>
 					<label for="username">Login Name:</label>
-					<input type="text" id="username" name="username" />
+					<input type="text" id="username" th:field="*{username}" />
+					<h6 th:if="${#fields.hasErrors('username')}">Incorrect username</h6>
 				</div>
 				<div>
 					<label for="password">Password:</label>
